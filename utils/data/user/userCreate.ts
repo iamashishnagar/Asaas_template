@@ -39,12 +39,15 @@ export const userCreate = async ({
       ])
       .select();
 
-    console.log("data", data);
-    console.log("error", error);
+    if (error) {
+      console.error("Error creating user:", error);
+      throw new Error(error.message);
+    }
 
-    if (error?.code) return error;
+    console.log("User created successfully:", data);
     return data;
   } catch (error: any) {
+    console.error("Unexpected error creating user:", error);
     throw new Error(error.message);
   }
 };

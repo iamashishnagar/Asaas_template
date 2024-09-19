@@ -59,7 +59,7 @@ export async function POST(req: Request) {
   switch (eventType) {
     case "user.created":
       try {
-        await userCreate({
+        const userData = await userCreate({
           email: payload?.data?.email_addresses?.[0]?.email_address,
           first_name: payload?.data?.first_name,
           last_name: payload?.data?.last_name,
@@ -67,15 +67,20 @@ export async function POST(req: Request) {
           user_id: payload?.data?.id,
         });
 
+        console.log("User created in database:", userData);
+
         return NextResponse.json({
           status: 200,
           message: "User info inserted",
+          data: userData,
         });
       } catch (error: any) {
+        console.error("Error creating user:", error);
         return NextResponse.json({
-          status: 400,
-          message: error.message,
-        });
+          status: 500,
+          message: "Error creating user",
+          error: error.message,
+        }, { status: 500 });
       }
       break;
 
