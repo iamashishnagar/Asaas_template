@@ -12,21 +12,21 @@
 
 1. Clone the repository:
 
-   ```
+   ```bash
    git clone <repository-url>
    cd <project-directory>
    ```
 
 2. Install dependencies:
 
-   ```
+   ```bash
    yarn
    ```
 
 3. Set up environment variables:
    Create a `.env` file in the root directory with the following variables:
 
-   ```
+   ```bash
    SUPABASE_URL=<your-supabase-project-url>
    SUPABASE_SERVICE_KEY=<your-supabase-service-key>
 
@@ -60,13 +60,13 @@
 5. Set up the database:
    Run Prisma migrations:
 
-   ```
+   ```bash
    npx prisma migrate dev
    ```
 
 6. Start the development server:
 
-   ```
+   ```bash
    yarn dev
    ```
 
